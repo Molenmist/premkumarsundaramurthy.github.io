@@ -1,659 +1,467 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Premkumar Sundaramurthy</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Portfolio Website" />
-	<meta name="keywords" content="Portfolio Website for Myself to say ablout the talents i have in various department" />
-	<meta name="author" content="Portfolio" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090909">
+<title>Premkumar Sundaramurthy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#090909;--panel:#121212;--panel2:#181818;--text:#f3f3f0;--muted:#9b9b96;--line:rgba(255,255,255,.12);
+    --accent:#ff3b2f; /* change this one value to recolour the site */
+    --display:"Anton","Impact","Arial Narrow",sans-serif;--body:"Space Grotesk",system-ui,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:72px;background:var(--bg)}
+  body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.06;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,h4{font-weight:400}
+  section{padding:6.5rem 1.25rem}
+  .wrap{max-width:1040px;margin:0 auto}
+  .title{font-family:var(--display);text-transform:uppercase;letter-spacing:.02em;font-size:clamp(2.4rem,6vw,4.2rem);line-height:1;margin-bottom:3.5rem;display:flex;align-items:center;gap:1.2rem}
+  .title::after{content:"";flex:1;height:1px;background:var(--line)}
+  .title::before{content:"";width:14px;height:14px;background:var(--accent);flex:none}
+  img.missing{background:var(--panel2);min-height:180px;color:transparent}
 
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
+  /* loader */
+  #loader{position:fixed;inset:0;background:var(--bg);z-index:100;display:grid;place-content:center;gap:1rem;text-align:center;transition:opacity .6s,visibility .6s}
+  #loader b{font-family:var(--display);font-size:clamp(3rem,10vw,6rem);font-weight:400}
+  #loader i{display:block;height:3px;width:min(260px,70vw);background:var(--line);margin:0 auto;overflow:hidden}
+  #loader i::after{content:"";display:block;height:100%;width:var(--p,0%);background:var(--accent)}
+  #loader.done{opacity:0;visibility:hidden}
 
-	<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem;
+    background:rgba(9,9,9,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .logo{font-family:var(--display);font-size:1.3rem;letter-spacing:.04em;text-transform:uppercase}
+  nav ul{display:flex;gap:1.6rem;list-style:none;font-size:.9rem}
+  nav ul a{color:var(--muted);transition:color .2s}
+  nav ul a:hover,nav ul a.on{color:var(--text)}
+  .burger{display:none;background:none;border:1px solid var(--line);color:var(--text);width:42px;height:42px;font-size:1.2rem;cursor:pointer}
 
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+  /* hero */
+  .hero{position:relative;min-height:100vh;display:grid;place-items:center;text-align:center;padding:6rem 1.25rem 3rem;isolation:isolate;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url("images/IMG_20200531_062027.jpg") center/cover no-repeat;filter:grayscale(1) contrast(1.1) brightness(.45)}
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 45%,rgba(9,9,9,.35),rgba(9,9,9,.92) 75%),linear-gradient(to bottom,rgba(9,9,9,.5),var(--bg))}
+  .hero .in>*{opacity:0;transform:translateY(24px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero .in>:nth-child(1){animation-delay:.9s}.hero .in>:nth-child(2){animation-delay:1.1s}.hero .in>:nth-child(3){animation-delay:1.3s}.hero .in>:nth-child(4){animation-delay:1.5s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .ring{position:relative;width:220px;height:220px;margin:0 auto}
+  .ring::before{content:"";position:absolute;inset:-12px;border-radius:50%;border:1px solid var(--line);border-top-color:var(--accent)}
+  .ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:#1b1b1b}
+  .hero h1{margin-top:2.6rem;font-family:var(--display);text-transform:uppercase;line-height:.95;letter-spacing:.02em;font-size:clamp(3rem,11vw,8.5rem)}
+  .hero h1 span{display:block}
+  .hero h1 span+span{-webkit-text-stroke:1.5px var(--text);color:transparent}
+  .tagline{margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--line);font-weight:500;letter-spacing:.08em;color:var(--muted);font-size:clamp(.95rem,2vw,1.15rem)}
+  .social{margin-top:2.2rem;display:flex;gap:1rem;list-style:none;justify-content:center}
+  .social a{width:52px;height:52px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);transition:.25s}
+  .social a:hover,.social a:focus-visible{background:var(--text);color:var(--bg);border-color:var(--text);transform:translateY(-4px)}
+  .social svg,.boxes svg{width:22px;height:22px;fill:currentColor}
 
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+  /* about */
+  .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:1.5rem}
+  .panel{background:var(--panel);border:1px solid var(--line);padding:2rem}
+  .about dl{display:grid;grid-template-columns:auto 1fr;gap:1.1rem 1.6rem;font-size:.95rem}
+  .about dt{font-weight:700}.about dd{color:var(--muted);word-break:break-word}
+  .about h3{font-family:var(--display);text-transform:uppercase;font-size:2.2rem;margin-bottom:1rem}
+  .about p{color:var(--muted);margin-bottom:1.2rem}
+  .boxes{display:flex;gap:.7rem;margin-top:2rem;list-style:none}
+  .boxes a{display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--line);transition:.25s}
+  .boxes a:hover{background:var(--accent);border-color:var(--accent)}
+  .boxes svg{width:20px;height:20px}
 
-	</head>
-	<body>
-		
-	<div class="fh5co-loader"></div>
-	
-	<div id="page">	
-	<header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image:url(images/IMG_20200531_062027.jpg);" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center">
-					<div class="display-t js-fullheight">
-						<div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-							<div class="profile-thumb" style="background: url(images/user-3.jpg);"></div>
-							<h1><span>Premkumar Sundaramurthy</span></h1>
-							<h3><span>Student(Backlog Due to Intern)</span></span></h3>
-							<p>
-								<ul class="fh5co-social-icons">
-									<li><a href="https://twitter.com/molenmist_"><i class="icon-twitter2"></i></a></li>
-									<li><a href="https://www.facebook.com/profile.php?id=100010342991611"><i class="icon-facebook2"></i></a></li>
-									<li><a href="https://in.linkedin.com/in/premkumar-sundaramurthy-a41b4019a"><i class="icon-linkedin2"></i></a></li>
-									<li><a href="mailto:prem20032009@gmail.com"><i class="icon-mail2"></i></a></li>
-								</ul>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+  /* timeline */
+  .group{font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:1.2rem;color:var(--accent);margin:3.2rem 0 2rem}
+  .tl{position:relative;padding-left:2.6rem}
+  .tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:var(--line)}
+  .item{position:relative;margin-bottom:1.4rem;background:var(--panel);border:1px solid var(--line);padding:1.5rem 1.7rem;transition:border-color .25s,transform .25s}
+  .item:hover{border-color:var(--accent);transform:translateX(4px)}
+  .item::before{content:"";position:absolute;left:calc(-2.6rem + 1px);top:1.9rem;width:15px;height:15px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+  .item h4{font-size:1.4rem;line-height:1.3;font-weight:500}
+  .item .sub{color:var(--accent);font-size:.9rem;margin:.4rem 0 .8rem}
+  .item p{color:var(--muted);font-size:.95rem}
 
-	<div id="fh5co-about" class="animate-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>About Me</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<ul class="info">
-						<li><span class="first-block">Full Name:</span><span class="second-block">Premkumar Sundaramurthy</span></li>
-						<li><span class="first-block">Phone:</span><span class="second-block">+91 9003120093</span></li>
-						<li><span class="first-block">Email:</span><span class="second-block">prem20032009@gmail.com</span></li>
-						<li><span class="first-block">Github:</span><span class="second-block">https://github.com/<br>Molenmist</www></span></li>
-						<li><span class="first-block">Address:</span><span class="second-block">50/2, K.E.B Street, Perumal koil Street, Madhavaram Milk Colony, Chennai 600051.</span></li>
-					</ul>
-				</div>
-				<div class="col-md-8">
-					<h2>Hello There!</h2>
-					<p>As a fast learner, my objective is to leverage my adaptability and quick grasp of new concepts related to my job in a dynamic and challenging environment.<br><br> 
-						I am passionate about continuously expanding my knowledge and skill set to contribute effectively to a diverse range of projects and initiatives.<br><br></p>
-					<p>
-						<ul class="fh5co-social-icons">
-							<li><a href="https://twitter.com/molenmist_"><i class="icon-twitter2"></i></a></li>
-							<li><a href="https://www.facebook.com/profile.php?id=100010342991611"><i class="icon-facebook3"></i></a></li>
-							<li><a href="https://in.linkedin.com/in/premkumar-sundaramurthy-a41b4019a"><i class="icon-linkedin2"></i></a></li>
-							<li><a href="mailto:prem20032009@gmail.com"><i class="icon-mail2"></i></a></li>
-						</ul>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
+  /* activities */
+  .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .acts div{background:var(--panel);border:1px solid var(--line);padding:1.8rem;transition:.25s}
+  .acts div:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .acts h4{font-family:var(--display);text-transform:uppercase;font-size:1.5rem;letter-spacing:.03em;margin-bottom:.6rem}
+  .acts p{color:var(--muted);font-size:.95rem}
 
-	<div id="fh5co-resume" class="fh5co-bg-color">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Portfolio</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 col-md-offset-0">
-					<ul class="timeline">
-						<li class="timeline-heading text-center animate-box">
-							<div><h3>Industrial Experience</h3></div>
-						</li>
-						<li class="animate-box timeline-unverted">
-							<div class="timeline-badge"><i class="icon-suitcase"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Drone Aviation</h3>
-									<span class="company">BANNARI AMMAN INSTITUE OF
-										TECHNOLOGY - 3 Days</span>
-								</div>
-								<div class="timeline-body">
-									<p>Aviation Program in UAV’s.
-										In this Program they Teach Us
-										how to Handle a Drone & how to
-										Control.</p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-inverted animate-box">
-							<div class="timeline-badge"><i class="icon-suitcase"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Internship in Defence Estate Office</h3>
-									<span class="company">Technical Assistant - 3-Month</span>
-								</div>
-								<div class="timeline-body">
-									<p>Survey Maps & Revenue Maps
-										Data Conversion to Excel By API, 
-										Revenue Maps Designing in Autocad Software, 
- 										Other Activities by Admin Section.</p>
-								</div>
-							</div>
-				                </li>
-						<li class="animate-box timeline-unverted">
-							<div class="timeline-badge"><i class="icon-suitcase"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Site - Supervisor</h3>
-									<span class="company">Dhivi Krishna Construction - 6-Month</span>
-								</div>	
-				                                        <div class="timeline-body">
-									<p>Project Mangement, Team Leadership, Technical Expertise, 
-									Problem Solving, Risk Management, Resource Allocation.</p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-inverted animate-box">
-							<div class="timeline-badge"><i class="icon-suitcase"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">IN-PLANT TRAINING</h3>
-									<span class="company">Lema Engineers - 1-Month</span>
-								</div>
-								<div class="timeline-body">
-									<p>Panel Board
-										Assembly, for centralized Air
-										conditioning and other activities in
-										Electrical and Electronics field.</p>
-								</div>
-							</div>
-						</li>
-						<li class="animate-box timeline-unverted">
-							<div class="timeline-badge"><i class="icon-suitcase"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Design Engineer</h3>
-									<span class="company">Diagonal CADD - 2019 - 2020</span>
-								</div>
-								<div class="timeline-body">
-									<p>Worked as Project Assistant, where I
-										used to design mechanical
-										component using Computer aided
-										design and Computer aided analyze.  
-										Software’s Likely:
-										CREO, AUTOCAD, SOLIDWORKS,
-										CATIA, ANSYS & NXCAD/CAM.</p>
-								</div>
-							</div>
-						</li>
+  /* skills */
+  .circles{display:grid;grid-template-columns:repeat(4,1fr);gap:2.4rem 1rem;justify-items:center;margin-bottom:4rem}
+  .circle{position:relative;width:120px;height:120px}
+  .circle svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .circle circle{fill:none;stroke-width:3}
+  .circle .bg{stroke:rgba(255,255,255,.1)}
+  .circle .fg{stroke:var(--accent);stroke-linecap:round;stroke-dasharray:289;stroke-dashoffset:289;transition:stroke-dashoffset 1.4s ease}
+  .circle span{position:absolute;inset:0;display:grid;place-content:center;text-align:center;font-size:.8rem;font-weight:700;line-height:1.3;padding:0 .9rem}
+  .bars{display:grid;grid-template-columns:1fr 1fr;gap:1.7rem 3rem}
+  .bar .row{display:flex;justify-content:space-between;font-size:.95rem}
+  .bar .track{height:4px;background:rgba(255,255,255,.1);margin-top:.4rem}
+  .bar .fill{height:100%;width:0;background:var(--text);transition:width 1.4s ease}
 
-						<br>
-						<li class="timeline-heading text-center animate-box">
-							<div><h3>Education</h3></div>
-						</li>
-						<li class="animate-box timeline-inverted">
-							<div class="timeline-badge"><i class="icon-graduation-cap"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Anna University RO's - Coimbatore <br>2021 - 2026</h3>
-									<span class="company">Bachelors Degree</span>
-								</div>
-								<div class="timeline-body">
-									<p>COMPUTER SCIENCE ENGINEERING (CURRENTLY IN BREAK)</p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-unverted animate-box">
-							<div class="timeline-badge"><i class="icon-graduation-cap"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">V.Ramakrishna Polytechnic College <br>2018 - 2021</h3>
-									<span class="company">Diploma Course</span>
-								</div>
-								<div class="timeline-body">
-									<p>Diploma in Mechanical = 89%
-										<br>2018 Batch (GOLD MEDAL)</p>
-								</div>
-							</div>
-						</li>
-						<li class="animate-box timeline-inverted">
-							<div class="timeline-badge"><i class="icon-graduation-cap"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">TAHA Convent Matriculation School <br>2018</h3>
-									<span class="company">SSLC</span>
-								</div>
-								<div class="timeline-body">
-									<p>SSLC=67%<br>High School</p>
-								</div>
-							</div>
-						</li>
-			    	</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	
+  /* projects */
+  .projects{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
+  .projects>div{position:relative;overflow:hidden;background:var(--panel2)}
+  .projects img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;filter:grayscale(.6);transition:transform .6s,filter .4s}
+  .projects>div:hover img{transform:scale(1.08);filter:none}
+  .cap{position:absolute;inset:auto 0 0 0;padding:1.2rem 1rem 1rem;background:linear-gradient(transparent,rgba(9,9,9,.95));transform:translateY(55%);opacity:0;transition:.4s}
+  .cap h4{font-family:var(--display);text-transform:uppercase;font-size:1.2rem;letter-spacing:.03em}
+  .cap span{display:block;font-size:.8rem;color:var(--muted);line-height:1.4;margin-top:.3rem}
+  .projects>div:hover .cap,.projects>div:focus-within .cap{transform:none;opacity:1}
+  @media(hover:none){.cap{transform:none;opacity:1}}
 
-	<div id="fh5co-features" class="animate-box">
-		<div class="container">
-			<div class="services-padding">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-						<h2>Activities</h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 text-center">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-heart"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Music Keyboard</h3>
-								<p>You have to take a deep breath, and allow the music to flow through you.</p>
-							</div>
-						</div>
-					</div>
+  /* milestones */
+  .sub-title{max-width:640px;margin:-1.8rem 0 3rem;color:var(--muted)}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .card{background:var(--panel);border:1px solid var(--line);transition:.25s}
+  .card:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--panel2)}
+  .card .in{padding:1.4rem 1.5rem 1.6rem}
+  .prize{display:inline-block;font-size:.8rem;letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent);padding:.1rem .7rem;margin-bottom:.9rem}
+  .card h4{font-size:1.3rem;line-height:1.35;margin-bottom:.8rem;font-weight:500}
+  .card p{color:var(--muted);font-size:.92rem}
 
-					<div class="col-md-4 text-center">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-music"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Guitar</h3>
-								<p>Music touches us emotionally, where words alone can't.</p>
-							</div>
-						</div>
-
-					</div>
-					<div class="col-md-4 text-center">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-earth"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Travel</h3>
-								<p>Life is either a daring adventure or nothing at all.</p>
-							</div>
-						</div>
-					</div>
-				</div>
+  /* contact */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;align-items:stretch}
+  .contact>img{width:100%;height:100%;object-fit:cover;display:block;background:var(--panel2);min-height:380px;filter:grayscale(.3)}
+  .contact form{display:flex;flex-direction:column;gap:1rem;background:var(--panel);border:1px solid var(--line);padding:2.2rem}
+  .contact h3{font-family:var(--display);text-transform:uppercase;font-size:2rem}
+  .contact input,.contact textarea{font-family:var(--body);font-size:.95rem;padding:.85rem 1rem;border:1px solid var(--line);background:var(--bg);color:var(--text);width:100%}
+  .contact textarea{min-height:170px;resize:vertical}
+  .contact ::placeholder{color:#6f6f6a}
+  .contact input:focus,.contact textarea:focus{outline:none;border-color:var(--accent)}
+  .contact button{align-self:flex-start;font-family:var(--body);font-weight:700;font-size:1rem;color:#fff;background:var(--accent);border:0;padding:.85rem 2rem;cursor:pointer;transition:.25s}
+  .contact button:hover{background:var(--text);color:var(--bg)}
+  .cv{display:inline-block;border:1px solid var(--text);padding:.8rem 2rem;font-weight:700;transition:.25s}
+  .cv:hover{background:var(--text);color:var(--bg)}
+  footer{border-top:1px solid var(--line);padding:2rem 1.25rem 3rem;text-align:center;color:var(--muted);font-weight:500}
 
 
-				<div class="row">
-					<div class="col-md-4 text-center">
 
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-book"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Novels</h3>
-								<p>It's the possibility of having a dream come true that makes life interesting.</p>
-							</div>
-						</div>
+  /* typing effect */
+  .caret{display:inline-block;width:2px;height:1em;background:var(--accent);margin-left:2px;vertical-align:-.12em;animation:blink .9s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  /* agents: cursors that drag a box around each block, then type into it */
+  .agent{position:fixed;left:0;top:0;width:20px;height:20px;margin:-2px 0 0 -3px;transform-origin:3px 2px;pointer-events:none;z-index:80;will-change:transform}
+  .agent svg{width:100%;height:100%;display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
+  .selbox{position:fixed;z-index:79;pointer-events:none;box-sizing:border-box;border:1px solid var(--c);display:none;transition:opacity .3s}
+  .selbox i{position:absolute;width:7px;height:7px;background:#fff;border:1px solid var(--c)}
+  .selbox i:nth-child(1){left:-4px;top:-4px}.selbox i:nth-child(2){right:-4px;top:-4px}
+  .selbox i:nth-child(3){left:-4px;bottom:-4px}.selbox i:nth-child(4){right:-4px;bottom:-4px}
+  .selbox b{position:absolute;left:50%;top:100%;transform:translate(-50%,8px);background:var(--c);color:var(--t);font:700 11px/1 var(--body);padding:3px 6px;border-radius:3px;white-space:nowrap}
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
 
-					</div>
+  @media(max-width:860px){
+    .burger{display:block}
+    nav ul{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+    nav ul.open{display:flex}nav ul a{display:block;padding:1rem 1.5rem}
+    .about,.contact,.bars,.cards,.acts{grid-template-columns:1fr}
+    .circles{grid-template-columns:repeat(2,1fr)}.projects{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:560px){.ring{width:170px;height:170px}.social a{width:46px;height:46px}.panel,.contact form{padding:1.4rem}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+    .hero .in>*,.rv{opacity:1;transform:none}#loader{display:none}}
+</style>
+</head>
+<body>
 
-					<div class="col-md-4 text-center">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-camera"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Photography</h3>
-								<p>oday everything exists to end in a photograph.</p>
-							</div>
-						</div>
+<div id="loader" aria-hidden="true"><b id="pct">0%</b><i></i></div>
 
-					</div>
-					<div class="col-md-4 text-center">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-pencil"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Drawing</h3>
-								<p>Sketching is an art that is always fresh and needs to be explored more.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<nav>
+  <a href="#home" class="logo">Premkumar</a>
+  <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
+  <ul id="menu">
+    <li><a href="#home">Home</a></li><li><a href="#about">About Me</a></li><li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#activities">Activities</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li>
+    <li><a href="#milestone">Mile Stone</a></li><li><a href="#contact">Hire Me!</a></li>
+  </ul>
+</nav>
 
-	<div id="fh5co-skills" class="animate-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Skills</h2>
-				</div>
-			</div>
-			<div class="row row-pb-md">
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="45"><span><strong>HTML</Foundation><br>45%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="43"><span><strong>C Language</Foundation><br>43%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="45"><span><strong>Python</strong>45%</span></div>
-				</div>
+<header class="hero" id="home">
+  <div class="in">
+    <div class="ring"><img src="images/user-3.jpg" alt="Photo of Premkumar Sundaramurthy"></div>
+    <h1><span>Premkumar</span><span>Sundaramurthy</span></h1>
+    <p class="tagline">Student(Backlog Due to Intern)</p>
+    <ul class="social" id="heroSocial"></ul>
+  </div>
+</header>
 
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="89"><span><strong>SOLIDWORKS</strong>89%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="85"><span><strong>CREO</strong>85%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="90"><span><strong>ANSYS</strong>90%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="40"><span><strong>MICROSOFT <br>OFFICE</Foundation><br>40%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="40"><span><strong>Blender</Basic><br>40%</span></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="progress-wrap">
-						<h3><span class="name-left">Neural Network</span><span class="value-right">15%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-1 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:15%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">Augmented Reality-Unity</span><span class="value-right">30%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-2 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:30%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">VR-Maya</span><span class="value-right">30%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-3 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:30%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">Java</span><span class="value-right">25%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-4 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width:25%">
-						  </div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="progress-wrap">
-						<h3><span class="name-left">Blockchain</span><span class="value-right">25%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-5 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:25%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">API</span><span class="value-right">70%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-striped active" role="progressbar"
-						  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">FL Studio</span><span class="value-right">75%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-1 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width:75%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">Premier Pro</span><span class="value-right">55%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-3 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:55%">
-						  </div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<section id="about"><div class="wrap rv">
+  <h2 class="title">About Me</h2>
+  <div class="about">
+    <div class="panel"><dl>
+      <dt>Full Name:</dt><dd>Premkumar Sundaramurthy</dd>
+      <dt>Phone:</dt><dd>+91 9003120093</dd>
+      <dt>Email:</dt><dd>prem20032009@gmail.com</dd>
+      <dt>Github:</dt><dd>https://github.com/Molenmist</dd>
+      <dt>Address:</dt><dd>50/2, K.E.B Street, Perumal koil Street, Madhavaram Milk Colony, Chennai 600051.</dd>
+    </dl></div>
+    <div class="panel">
+      <h3>Hello There!</h3>
+      <p>As a fast learner, my objective is to leverage my adaptability and quick grasp of new concepts related to my job in a dynamic and challenging environment.</p>
+      <p>I am passionate about continuously expanding my knowledge and skill set to contribute effectively to a diverse range of projects and initiatives.</p>
+      <ul class="boxes" id="aboutBoxes"></ul>
+    </div>
+  </div>
+</div></section>
 
-	<div id="fh5co-work" class="fh5co-bg-dark">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Projects</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="#" class="work" style="background-image: url(images/Dream.jpeg);">
-						<div class="desc">
-							<h3>Dream APP-ns</h3>
-							<span>This application Generate's 3D Object by 2D.jpg file.</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="#" class="work" style="background-image: url(images/hexapod.JPG);">
-						<div class="desc">
-							<h3>Hexapod</h3>
-							<span>Hexapod- 6 Leg robot to climb in vertical & critical place.</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="#" class="work" style="background-image: url(images/Printer.jpg);">
-						<div class="desc">
-							<h3>3D Printer</h3>
-							<span>3-Dimensional Printer by Plastic or Resin material.</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="#" class="work" style="background-image: url(images/Drone.JPG);">
-						<div class="desc">
-							<h3>Drone</h3>
-							<span>Auto Stability unmanned aircraft (UAV's) for Camera.</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="#" class="work" style="background-image: url(images/Website.jpg);">
-						<div class="desc">
-							<h3>Website <br>Portfolio</h3>
-							<span>Curriculum vitae a Full Overview of myself.<br></span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="#" class="work" style="background-image: url(images/Tri-pod.JPG);">
-						<div class="desc">
-							<h3>Tri-Copter</h3>
-							<span>Copter that behave like Drone(Stability) and Flight(Rapid Movement).</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="#" class="work" style="background-image: url(images/Haptic-gloves.jpg);">
-						<div class="desc">
-							<h3>Haptic Gloves</h3>
-							<span>Tactile sensations to stimulate the sense of touch.</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="#" class="work" style="background-image: url(images/car.jfif);">
-						<div class="desc">
-							<h3>Pneumatic Car</h3>
-							<span>Compressed Air vehicle, that drives in the pressure of Air.</span>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+<section id="portfolio" style="padding-top:2rem"><div class="wrap rv">
+  <h2 class="title">Portfolio</h2>
+  <h3 class="group">Industrial Experience</h3>
+  <div class="tl" id="tlWork"></div>
+  <h3 class="group">Education</h3>
+  <div class="tl" id="tlEdu"></div>
+</div></section>
 
-	<div id="fh5co-blog">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Mile Stone</h2>
-					<p>We accuse the most worthy of the harshest things in life, but they provide for the whole flight of troubles. He hates some of his pain.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="#" class="blog-bg" style="background-image: url(images/User.jpg);"></a>
-						<div class="blog-text">
-							<span class="posted_on">First Prize “IDEATHON”</span>
-							<h3><a href="#">INNOVATE’23 <br>Dream APP'ns</a></h3>
-							<p>Ideanthon Conducted by Dr.NGPIntuition of technology Engineering college, For Great startup and Design Idea's.</p>
-							<ul class="stuff">
-							</ul>
-						</div> 
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="#" class="blog-bg" style="background-image: url(images/Sathak.jpg);"></a>
-						<div class="blog-text">
-							<span class="posted_on">First Prize</span>
-							<h3><a href="#">Project Expo <br>Hexapod</a></h3>
-							<p>Best Project Done By the Engineering Students that helps to the Society and Environment.</p>
-							<ul class="stuff">
-							</ul>
-						</div> 
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="#" class="blog-bg" style="background-image: url(images/IMG_20200531_062027.jpg);"></a>
-						<div class="blog-text">
-							<span class="posted_on">Second Prize</span>
-							<h3><a href="#">Distric Level Speech Competition </a></h3>
-							<p>Awareness on National Leprosy Eradication Programme(NLCP.) By Tamil Nadu Government Health Department.</p>
-							<ul class="stuff">
-							</ul>
-						</div> 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div id="fh5co-started" class="fh5co-bg-dark">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Hire Me!</h2>
-					<p></p>
-					<p><a href="https://drive.google.com/file/d/19pjEL1tQl4KOsZNoYlIJAnaSzDHAu_Ze/view?usp=sharing" class="btn btn-default btn-lg">Curriculum Vitae</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div id="fh5co-consult">
-		<div class="video fh5co-video" style="background-image: url(images/Cover.jpg);">
-			<div class="overlay"></div>
-		</div>
-		<div class="choose animate-box">
-			<h2>Contact</h2>
-			<form action="#">
-				<div class="row form-group">
-					<div class="col-md-6">
-						<input type="text" id="fname" class="form-control" placeholder="Your Good Name">
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-md-6">
-						<input type="text" id="lname" class="form-control" placeholder="Company's Name">
-					</div>
-				</div>
+<section id="activities"><div class="wrap rv">
+  <h2 class="title">Activities</h2>
+  <div class="acts" id="acts"></div>
+</div></section>
 
-				<div class="row form-group">
-					<div class="col-md-12">
-						<input type="text" id="email" class="form-control" placeholder="Company's email address">
-					</div>
-				</div>
+<section id="skills"><div class="wrap rv">
+  <h2 class="title">Skills</h2>
+  <div class="circles" id="circles"></div>
+  <div class="bars" id="bars"></div>
+</div></section>
 
-				<div class="row form-group">
-					<div class="col-md-12">
-						<input type="text" id="subject" class="form-control" placeholder="Job Designation">
-					</div>
-				</div>
+<section id="projects"><div class="wrap rv">
+  <h2 class="title">Projects</h2>
+  <div class="projects" id="projectsGrid"></div>
+</div></section>
 
-				<div class="row form-group">
-					<div class="col-md-12">
-						<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Description of the work."></textarea>
-					</div>
-				</div>
-				<div class="form-group">
-					<input type="submit" value="Send Message" class="btn btn-primary">
-				</div>
+<section id="milestone"><div class="wrap rv">
+  <h2 class="title">Mile Stone</h2>
+  <p class="sub-title">We accuse the most worthy of the harshest things in life, but they provide for the whole flight of troubles. He hates some of his pain.</p>
+  <div class="cards" id="cards"></div>
+</div></section>
 
-			</form>	
-		</div>
-	
-	
-	<div id="fh5co-footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<p>&copy; Premkumar Sundaramurthy.</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
+<section id="contact"><div class="wrap rv">
+  <h2 class="title">Hire Me!</h2>
+  <p style="margin:-1.8rem 0 3rem"><a class="cv" href="https://drive.google.com/file/d/19pjEL1tQl4KOsZNoYlIJAnaSzDHAu_Ze/view?usp=sharing" target="_blank" rel="noopener">Curriculum Vitae</a></p>
+  <div class="contact">
+    <img src="images/Cover.jpg" alt="Premkumar Sundaramurthy">
+    <form id="form">
+      <h3>Contact</h3>
+      <input name="name" placeholder="Your Good Name" required>
+      <input name="company" placeholder="Company's Name">
+      <input name="email" type="email" placeholder="Company's email address" required>
+      <input name="role" placeholder="Job Designation">
+      <textarea name="msg" placeholder="Description of the work." required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</div></section>
 
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
-	</div>
-	
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Stellar Parallax -->
-	<script src="js/jquery.stellar.min.js"></script>
-	<!-- Easy PieChart -->
-	<script src="js/jquery.easypiechart.min.js"></script>
-	<!-- Google Map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
-	
-	<!-- Main -->
-	<script src="js/main.js"></script>
+<footer>&copy; Premkumar Sundaramurthy.</footer>
 
-	</body>
+<script>
+/* ---------- edit your links here ---------- */
+const LINKS={twitter:"https://twitter.com/molenmist_",facebook:"https://www.facebook.com/profile.php?id=100010342991611",linkedin:"https://in.linkedin.com/in/premkumar-sundaramurthy-a41b4019a",github:"https://github.com/Molenmist",mail:"mailto:prem20032009@gmail.com"};
+const ICON={
+ twitter:'<path d="M23.95 4.57a10 10 0 0 1-2.82.77 4.96 4.96 0 0 0 2.16-2.72c-.95.56-2 .96-3.13 1.19a4.92 4.92 0 0 0-8.38 4.49A13.98 13.98 0 0 1 1.64 3.16a4.82 4.82 0 0 0-.66 2.48c0 1.71.87 3.21 2.19 4.08a4.9 4.9 0 0 1-2.23-.62v.06c0 2.39 1.7 4.38 3.95 4.83a4.94 4.94 0 0 1-2.22.08 4.93 4.93 0 0 0 4.6 3.42A9.87 9.87 0 0 1 0 19.54 13.94 13.94 0 0 0 7.55 21.75c9.05 0 14-7.5 14-13.98 0-.21 0-.42-.02-.63A9.94 9.94 0 0 0 24 4.59z"/>',
+ facebook:'<path d="M22.68 0H1.32A1.32 1.32 0 0 0 0 1.32v21.36C0 23.4.6 24 1.32 24h11.5v-9.29H9.69v-3.62h3.13V8.41c0-3.1 1.89-4.79 4.66-4.79 1.32 0 2.46.1 2.79.14v3.24h-1.92c-1.5 0-1.8.72-1.8 1.77v2.32h3.6l-.47 3.62h-3.13V24h6.13c.73 0 1.32-.6 1.32-1.32V1.32C24 .6 23.4 0 22.68 0z"/>',
+ linkedin:'<path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>',
+ github:'<path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/>',
+ mail:'<path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1.4 2L12 12.6 20.6 6H3.4zM3 18h18V8.1l-9 6.9-9-6.9V18z"/>'};
+const $=id=>document.getElementById(id);
+const li=(k,l)=>`<li><a href="${LINKS[k]}" target="_blank" rel="noopener" aria-label="${l}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg></a></li>`;
+$("heroSocial").innerHTML=li("twitter","Twitter")+li("facebook","Facebook")+li("linkedin","LinkedIn")+li("mail","Email");
+$("aboutBoxes").innerHTML=li("github","GitHub")+li("linkedin","LinkedIn")+li("facebook","Facebook")+li("twitter","Twitter");
+
+const work=[
+ ["Drone Aviation","BANNARI AMMAN INSTITUE OF TECHNOLOGY - 3 Days","Aviation Program in UAV's. In this Program they Teach Us how to Handle a Drone & how to Control."],
+ ["Internship in Defence Estate Office","Technical Assistant - 3-Month","Survey Maps & Revenue Maps Data Conversion to Excel By API, Revenue Maps Designing in Autocad Software, Other Activities by Admin Section."],
+ ["Site - Supervisor","Dhivi Krishna Construction - 6-Month","Project Mangement, Team Leadership, Technical Expertise, Problem Solving, Risk Management, Resource Allocation."],
+ ["IN-PLANT TRAINING","Lema Engineers - 1-Month","Panel Board Assembly, for centralized Air conditioning and other activities in Electrical and Electronics field."],
+ ["Design Engineer","Diagonal CADD - 2019 - 2020","Worked as Project Assistant, where I used to design mechanical component using Computer aided design and Computer aided analyze. Software's Likely: CREO, AUTOCAD, SOLIDWORKS, CATIA, ANSYS & NXCAD/CAM."]];
+const edu=[
+ ["Anna University RO's - Coimbatore 2021 - 2026","Bachelors Degree","COMPUTER SCIENCE ENGINEERING (CURRENTLY IN BREAK)"],
+ ["V.Ramakrishna Polytechnic College 2018 - 2021","Diploma Course","Diploma in Mechanical = 89%<br>2018 Batch (GOLD MEDAL)"],
+ ["TAHA Convent Matriculation School 2018","SSLC","SSLC=67%<br>High School"]];
+const tl=(el,d)=>$(el).innerHTML=d.map(x=>`<div class="item"><h4>${x[0]}</h4><div class="sub">${x[1]}</div><p>${x[2]}</p></div>`).join("");
+tl("tlWork",work);tl("tlEdu",edu);
+
+$("acts").innerHTML=[
+ ["Music Keyboard","You have to take a deep breath, and allow the music to flow through you."],
+ ["Guitar","Music touches us emotionally, where words alone can't."],
+ ["Travel","Life is either a daring adventure or nothing at all."],
+ ["Novels","It's the possibility of having a dream come true that makes life interesting."],
+ ["Photography","oday everything exists to end in a photograph."],
+ ["Drawing","Sketching is an art that is always fresh and needs to be explored more."]].map(a=>`<div><h4>${a[0]}</h4><p>${a[1]}</p></div>`).join("");
+
+const circles=[["HTML",45],["C Language",43],["Python",45],["SOLIDWORKS",89],["CREO",85],["ANSYS",90],["MICROSOFT OFFICE",40],["Blender",40]];
+$("circles").innerHTML=circles.map(c=>`<div class="circle" data-v="${c[1]}"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="46"/><circle class="fg" cx="50" cy="50" r="46"/></svg><span>${c[0]}<br>${c[1]}%</span></div>`).join("");
+const bars=[["Neural Network",15],["Blockchain",25],["Augmented Reality-Unity",30],["API",70],["VR-Maya",30],["FL Studio",75],["Java",25],["Premier Pro",55]];
+$("bars").innerHTML=bars.map(b=>`<div class="bar"><div class="row"><span>${b[0]}</span><span>${b[1]}%</span></div><div class="track"><div class="fill" data-v="${b[1]}"></div></div></div>`).join("");
+
+$("projectsGrid").innerHTML=[
+ ["Dream.jpeg","Dream APP-ns","This application Generate's 3D Object by 2D.jpg file."],
+ ["hexapod.JPG","Hexapod","Hexapod- 6 Leg robot to climb in vertical & critical place."],
+ ["Printer.jpg","3D Printer","3-Dimensional Printer by Plastic or Resin material."],
+ ["Drone.JPG","Drone","Auto Stability unmanned aircraft (UAV's) for Camera."],
+ ["Website.jpg","Website<br>Portfolio","Curriculum vitae a Full Overview of myself."],
+ ["Tri-pod.JPG","Tri-Copter","Copter that behave like Drone(Stability) and Flight(Rapid Movement)."],
+ ["Haptic-gloves.jpg","Haptic Gloves","Tactile sensations to stimulate the sense of touch."],
+ ["car.jfif","Pneumatic Car","Compressed Air vehicle, that drives in the pressure of Air."]
+].map(p=>`<div><img src="images/${p[0]}" alt="${p[1].replace(/<br>/g," ")}"><div class="cap"><h4>${p[1]}</h4><span>${p[2]}</span></div></div>`).join("");
+
+$("cards").innerHTML=[
+ ['First Prize "IDEATHON"',"INNOVATE'23<br>Dream APP'ns","Ideanthon Conducted by Dr.NGPIntuition of technology Engineering college, For Great startup and Design Idea's."],
+ ["First Prize","Project Expo<br>Hexapod","Best Project Done By the Engineering Students that helps to the Society and Environment."],
+ ["Second Prize","Distric Level Speech Competition","Awareness on National Leprosy Eradication Programme(NLCP.) By Tamil Nadu Government Health Department."]
+].map((c,i)=>`<article class="card"><img src="images/${["User.jpg","Sathak.jpg","IMG_20200531_062027.jpg"][i]}" alt="${c[1].replace(/<br>/g," ")}"><div class="in"><span class="prize">${c[0]}</span><h4>${c[1]}</h4><p>${c[2]}</p></div></article>`).join("");
+
+/* grey box if a photo is missing */
+document.querySelectorAll("img").forEach(i=>{const m=()=>i.classList.add("missing");i.addEventListener("error",m);if(i.complete&&i.naturalWidth===0)m();});
+
+/* loader */
+let p=0;const t=setInterval(()=>{p=Math.min(100,p+Math.ceil(Math.random()*12));$("pct").textContent=p+"%";$("loader").style.setProperty("--p",p+"%");
+  if(p>=100){clearInterval(t);setTimeout(()=>$("loader").classList.add("done"),250);}},70);
+
+/* mobile menu + active link */
+$("burger").onclick=()=>$("menu").classList.toggle("open");
+$("menu").onclick=e=>{if(e.target.tagName==="A")$("menu").classList.remove("open")};
+const links=[...document.querySelectorAll("#menu a")];
+const secs=links.map(a=>document.querySelector(a.getAttribute("href")));
+
+/* reveal + skills animation */
+const run=el=>{el.querySelectorAll(".circle").forEach(c=>c.querySelector(".fg").style.strokeDashoffset=289*(1-c.dataset.v/100));
+  el.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.v+"%");};
+if("IntersectionObserver"in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");if(e.target.closest("#skills"))run($("skills"));io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll(".rv").forEach(r=>io.observe(r));
+  const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
+  secs.forEach(s=>s&&so.observe(s));
+}else{document.querySelectorAll(".rv").forEach(r=>r.classList.add("in"));run($("skills"));}
+
+/* contact form: opens the visitor's mail app, pre-filled */
+$("form").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target);
+  const body=`Name: ${f.get("name")}\nCompany: ${f.get("company")}\nEmail: ${f.get("email")}\nJob Designation: ${f.get("role")}\n\n${f.get("msg")}`;
+  location.href=`mailto:prem20032009@gmail.com?subject=${encodeURIComponent("Hire request from "+f.get("name"))}&body=${encodeURIComponent(body)}`;});
+
+
+/* ---------- agents: a few cursors that move like people - curve to a block, press, drag a box open, adjust it, type ---------- */
+(()=>{
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches||!("IntersectionObserver"in window))return;
+  const rnd=(a,b)=>a+Math.random()*(b-a),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const mj=t=>{t=clamp(t,0,1);return t*t*t*(10+t*(-15+6*t))};            /* smooth, human-like speed curve */
+  const prof=k=>{k=clamp(k,0,1);return k<.7?mj(k/.7)*1.08:k<.88?1.08-.11*mj((k-.7)/.18):.97+.03*mj((k-.88)/.12)}; /* drag past the size, then pull back and settle */
+  /* only four colours, taken from the site theme: accent red, off-white, soft coral, grey */
+  const PAL=[{c:"#ff3b2f",t:"#ffffff"},{c:"#f3f3f0",t:"#111111"},{c:"#ff8a7a",t:"#111111"},{c:"#9b9b96",t:"#111111"}];
+  const TEXT=".title,.hero h1 span,.tagline,.about dt,.about dd,.about h3,.about p,.group,.item h4,.item .sub,.item p,.acts h4,.acts p,.sub-title,.card .prize,.card h4,.card p,.contact h3,.cv,.contact button";
+  const BOXES=".projects>div,.card>img,.contact>img,.ring";
+  document.querySelectorAll(".title").forEach(t=>{t.innerHTML="<span>"+t.textContent+"</span>"});
+
+  const agents=PAL.map((p,i)=>{
+    const el=document.createElement("div");el.className="agent";
+    el.innerHTML=`<svg viewBox="0 0 24 24"><path d="M4 2.5v17.2l4.5-4.1 2.9 6.6 2.6-1.1-2.9-6.5h5.1z" fill="${p.c}" stroke="${p.t==="#ffffff"?"#ffffff":"#0b0b0b"}" stroke-width="1.3" stroke-linejoin="round"/></svg>`;
+    document.body.appendChild(el);
+    return {el,color:p.c,ink:p.t,x:rnd(60,innerWidth-60),y:rnd(60,innerHeight-60),s:1,busy:false,pending:0,chain:Promise.resolve(),
+            wx:0,wy:0,next:0,ease:rnd(.01,.02),seed:rnd(0,100)};
+  });
+  const put=(a,now)=>a.el.style.transform=`translate(${a.x+Math.sin(now/310+a.seed)*.5}px,${a.y+Math.cos(now/270+a.seed)*.5}px) scale(${a.s})`;
+
+  (function idle(now){                                   /* a free cursor rests, then slowly nudges somewhere nearby */
+    for(const a of agents){
+      if(a.busy)continue;
+      if(now>a.next){a.next=now+rnd(2500,5000);a.wx=clamp(a.x+rnd(-160,160),20,innerWidth-40);a.wy=clamp(a.y+rnd(-120,120),20,innerHeight-40);}
+      a.x+=(a.wx-a.x)*a.ease;a.y+=(a.wy-a.y)*a.ease;a.s+=(1-a.s)*.2;put(a,now);
+    }
+    requestAnimationFrame(idle);
+  })(performance.now());
+
+  const speed=()=>{const n=agents.reduce((s,a)=>s+a.pending,0);return n>8?2:n>4?1.4:1};
+
+  const run=(a,it)=>new Promise(done=>{
+    const el=it.el,sp=speed(),t0=performance.now(),S={x:a.x,y:a.y};
+    const sel=document.createElement("div");sel.className="selbox";sel.style.setProperty("--c",a.color);sel.style.setProperty("--t",a.ink);
+    sel.innerHTML="<i></i><i></i><i></i><i></i><b></b>";document.body.appendChild(sel);
+    const badge=sel.lastChild,caret=document.createElement("span");caret.className="caret";caret.style.background=a.color;
+    let r=el.getBoundingClientRect();
+    const jx=rnd(-1,2),jy=rnd(-1,2),ox=rnd(4,10),oy=rnd(3,9),bow=rnd(-.18,.18);
+    const d=Math.hypot(r.left+jx-S.x,r.top+jy-S.y);
+    const F=clamp(320+d*.45,380,950)/sp,SET=140/sp,PR=110/sp,D=(600+Math.min(350,(r.width+r.height)*.4))/sp,REL=150/sp;
+    const T1=F,T2=T1+SET,T3=T2+PR,T4=T3+D,T5=T4+REL;
+    const total=it.nodes?it.nodes.reduce((s,x)=>s+x.full.length,0):0;
+    const dur=it.nodes?Math.min(1300,Math.max(300,total*18))/(sp>1?1.4:1):350;
+    let tt=0,over=false;
+    a.busy=true;
+    const end=()=>{
+      over=true;caret.remove();
+      if(it.nodes){it.nodes.forEach(x=>x.node.nodeValue=x.full);el.style.minHeight="";el.style.minWidth="";}
+      sel.style.opacity=0;setTimeout(()=>sel.remove(),350);
+      a.busy=false;a.wx=a.x;a.wy=a.y;a.next=performance.now()+rnd(300,900);done();
+    };
+    (function f(now){
+      if(over)return;
+      r=el.getBoundingClientRect();const t=now-t0,E={x:r.left+jx,y:r.top+jy};
+      let ts=1;                                            /* cursor press scale */
+      if(t<T1){                                            /* 1. travel along a gentle curve, a little past the target */
+        const k=mj(t/T1),O={x:E.x+ox,y:E.y+oy},dd=Math.hypot(O.x-S.x,O.y-S.y)||1;
+        const C={x:(S.x+O.x)/2-(O.y-S.y)/dd*dd*bow,y:(S.y+O.y)/2+(O.x-S.x)/dd*dd*bow};
+        a.x=(1-k)*(1-k)*S.x+2*(1-k)*k*C.x+k*k*O.x;a.y=(1-k)*(1-k)*S.y+2*(1-k)*k*C.y+k*k*O.y;
+      }else if(t<T2){                                      /* 2. correct back onto the corner */
+        const k=mj((t-T1)/SET);a.x=E.x+ox*(1-k);a.y=E.y+oy*(1-k);
+      }else if(t<T3){a.x=E.x;a.y=E.y;ts=.84;}              /* 3. press */
+      else if(t<T4){                                       /* 4. drag the corner open, overshoot, pull back, settle */
+        const k=(t-T3)/D,w=Math.max(1,r.width*prof(k)+Math.sin(t/55)*.6),h=Math.max(1,r.height*prof(clamp(k*1.06-.05,0,1))+Math.cos(t/47)*.6);
+        Object.assign(sel.style,{display:"block",left:r.left+"px",top:r.top+"px",width:w+"px",height:h+"px"});
+        badge.textContent=Math.round(w)+" \u00d7 "+Math.round(h);
+        a.x=r.left+w;a.y=r.top+h;ts=.84;
+      }else{                                               /* 5. let go, step aside, write */
+        Object.assign(sel.style,{display:"block",left:r.left+"px",top:r.top+"px",width:r.width+"px",height:r.height+"px"});
+        badge.textContent=Math.round(r.width)+" \u00d7 "+Math.round(r.height);
+        if(t<T5){a.x=r.right;a.y=r.bottom;}else{a.x+=(r.right+12-a.x)*.1;a.y+=(r.bottom+10-a.y)*.1;}
+        if(t>=T5){
+          if(!tt){tt=now;if(!it.nodes)el.style.opacity=1;}
+          const p=Math.min(1,(now-tt)/dur);
+          if(it.nodes){
+            let n=Math.floor(total*p),cur=null;
+            for(const x of it.nodes){const c=Math.min(n,x.full.length);x.node.nodeValue=x.full.slice(0,c);if(c>0||!cur)cur=x;n-=c;if(n<=0&&c<x.full.length)break;}
+            if(p<1&&cur)cur.node.parentNode.insertBefore(caret,cur.node.nextSibling);
+          }
+          if(p>=1){end();return;}
+        }
+      }
+      a.s+=(ts-a.s)*.35;put(a,now);requestAnimationFrame(f);
+    })(t0);
+  });
+
+  let ready=false;const queue=[];
+  const assign=el=>{const a=agents.reduce((m,x)=>x.pending<m.pending?x:m);a.pending++;
+    a.chain=a.chain.then(()=>run(a,el._it)).catch(()=>{}).then(()=>{a.pending--});};
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting)return;io.unobserve(e.target);ready?assign(e.target):queue.push(e.target);
+  }),{threshold:.25});
+  const textNodes=el=>{const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),r=[];let n;while(n=w.nextNode())if(n.nodeValue.trim())r.push(n);return r};
+
+  const init=()=>{
+    const els=[...document.querySelectorAll(TEXT)];
+    els.forEach(el=>{const r=el.getBoundingClientRect();el._h=r.height;el._w=r.width});   /* measure first so the layout never jumps */
+    els.forEach(el=>{
+      const nodes=textNodes(el).map(n=>({node:n,full:n.nodeValue}));if(!nodes.length)return;
+      el._it={el,nodes};el.style.minHeight=el._h+"px";el.style.minWidth=el._w+"px";nodes.forEach(x=>x.node.nodeValue="");io.observe(el);
+    });
+    document.querySelectorAll(BOXES).forEach(el=>{el._it={el};el.style.opacity=0;el.style.transition="opacity .45s";io.observe(el);});
+
+    const fields=document.querySelectorAll("#form input,#form textarea");   /* form placeholders type in too */
+    fields.forEach(f=>{f.dataset.ph=f.placeholder;f.placeholder=""});
+    const fio=new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;fio.disconnect();
+      fields.forEach((f,i)=>{const full=f.dataset.ph,t0=performance.now()+i*220+600;
+        (function step(now){const k=Math.max(0,Math.min(1,(now-t0)/700));f.placeholder=full.slice(0,Math.floor(full.length*k))+(k<1?"|":"");if(k<1)requestAnimationFrame(step)})(performance.now());});
+    },{threshold:.3});
+    fio.observe($("form"));
+
+    const go=()=>{ready=true;queue.splice(0).forEach(assign)};
+    const wait=()=>$("loader").classList.contains("done")?go():setTimeout(wait,100);wait();
+  };
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>requestAnimationFrame(init));
+})();
+</script>
+</body>
 </html>
-
